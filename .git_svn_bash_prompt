@@ -85,7 +85,7 @@ function set_git_branch {
   fi
 
   # Set the final branch string.
-  BRANCH="${state}(git${remote}${branch})${COLOR_NONE}"
+  BRANCH="${state}[Git(${remote}${branch})]${COLOR_NONE}"
 }
  
 # Determine the branch information for this subversion repository. No support
