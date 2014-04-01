@@ -57,6 +57,9 @@ function set_git_branch {
     state="${GREEN}"
   elif [[ ${git_status} =~ "Changes not staged for commit" ]]; then
     state="${RED}"
+  # Broke out into separate match because | wouldn't work
+  elif [[ ${git_status} =~ "Untracked files" ]]; then
+    state="${RED}"
   elif [[ ${git_status} =~ "Changes to be committed" ]]; then
     state="${YELLOW}"
   else
