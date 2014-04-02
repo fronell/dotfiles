@@ -90,25 +90,43 @@ function set_git_branch {
   # Set the final branch string.
   BRANCH="${state}[Git(${remote}${branch})]${COLOR_NONE}"
 }
+
+# Minimal function until I figure out what I want
+function set_svn_branch {
+  # Capture the output of the "svn status" command.
+  svn_status="$(svn status 2> /dev/null)"
+
+  # Set color based on clean/dirty.
+  if [[ ${svn_status} == "" ]]; then
+    state="${GREEN}"
+  elif [[ ${svn_status} != "" ]]; then
+    state="${RED}"
+  else
+    state="${COLOR_NONE}"
+  fi
+
+  # Set the final branch string.
+  BRANCH="${state}[SVN]${COLOR_NONE}"
+}
  
 # Determine the branch information for this subversion repository. No support
 # for svn status, since that needs to hit the remote repository.
-function set_svn_branch {
-  # Capture the output of the "git status" command.
-  svn_info="$(svn info | egrep '^URL: ' 2> /dev/null)"
- 
-  # Get the name of the branch.
-  branch_pattern="^URL: .*/(branches|tags)/([^/]+)"
-  trunk_pattern="^URL: .*/trunk(/.*)?$"
-  if [[ ${svn_info} =~ $branch_pattern ]]; then
-    branch=${BASH_REMATCH[2]}
-  elif [[ ${svn_info} =~ $trunk_pattern ]]; then
-    branch='trunk'
-  fi
- 
-  # Set the final branch string.
-  BRANCH="(${branch}) "
-}
+#function set_svn_branch {
+#  # Capture the output of the "git status" command.
+#  svn_info="$(svn info | egrep '^URL: ' 2> /dev/null)"
+# 
+#  # Get the name of the branch.
+#  branch_pattern="^URL: .*/(branches|tags)/([^/]+)"
+#  trunk_pattern="^URL: .*/trunk(/.*)?$"
+#  if [[ ${svn_info} =~ $branch_pattern ]]; then
+#    branch=${BASH_REMATCH[2]}
+#  elif [[ ${svn_info} =~ $trunk_pattern ]]; then
+#    branch='trunk'
+#  fi
+# 
+#  # Set the final branch string.
+#  BRANCH="(${branch}) "
+#}
  
 # Return the prompt symbol to use, colorized based on the return value of the
 # previous command.
@@ -137,7 +155,7 @@ function set_bash_prompt () {
   
   # Set the bash prompt variable.
   #PS1="\u@\h \w ${BRANCH}${PROMPT_SYMBOL} "
-  PS1="$PURPLE\w${BRANCH}$VIOLET[\j]$LIGHT_BLUE\$$WHITE "
+  PS1="$PURPLE\w${BRANCH}$VIOLET[\j]$LIGHT_BLUE\$$COLOR_NONE "
 }
  
 # Tell bash to execute this function just before displaying its prompt.

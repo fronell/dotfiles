@@ -13,6 +13,14 @@ alias sssh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 # Set our default editor
 export EDITOR=vim
 
+# Load ssh private key passphrase into memory
+# Reference: http://www.benknowscode.com/2012/09/using-password-protected-keys-in-linux_8145.html
+function loadsshkey()
+{
+ eval `ssh-agent`
+ ssh-add .ssh/id_rsa
+}
+
 # Prevent history getting overwritten from multipel bash sessions
 shopt -s histappend
 PROMPT_COMMAND='history -a'
@@ -50,4 +58,4 @@ fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Sets the prompt including git or svn info
-. ~/dotfiles/.git_svn_bash_prompt
+. ~/dotfiles/git_svn_bash_prompt
