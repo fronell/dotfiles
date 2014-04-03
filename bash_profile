@@ -18,7 +18,7 @@ export EDITOR=vim
 function loadsshkey()
 {
  eval `ssh-agent`
- ssh-add .ssh/id_rsa
+ ssh-add ~/.ssh/id_rsa
 }
 
 # Prevent history getting overwritten from multipel bash sessions
