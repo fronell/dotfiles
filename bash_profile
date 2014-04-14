@@ -1,3 +1,6 @@
+# Get all 256 colors in the terminal
+export TERM=xterm-256color
+
 # Java
 export JAVA_HOME=/usr/local/bin/java
 
