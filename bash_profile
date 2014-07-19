@@ -16,6 +16,9 @@ alias sssh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 # Set our default editor
 export EDITOR=vim
 
+# vi mode for bash and any other tool that uses GNU Readline, such as the MySQL
+set editing-mode vi
+
 # Load ssh private key passphrase into memory
 # Reference: http://www.benknowscode.com/2012/09/using-password-protected-keys-in-linux_8145.html
 function loadsshkey()
