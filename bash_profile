@@ -16,7 +16,9 @@ alias sssh='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 # Set our default editor
 export EDITOR=vim
 
-# vi mode for bash and any other tool that uses GNU Readline, such as the MySQL
+# vi mode for bash
+set -o vi
+# vi mode any tool that uses GNU Readline, such as the MySQL
 set editing-mode vi
 
 # Load ssh private key passphrase into memory
