@@ -49,7 +49,7 @@ if [[ "$unamestr" == 'Darwin' ]]; then
   alias grep='grep --color=auto'
 elif [[ "$unamestr" == 'Linux' ]]; then
   # enable color support of ls and also add handy aliases (only for Linux)
-  # Reference: https://github.com/nandykins/gentoo-conf/blob/master/.bashrc
+  # Reference: https://github.com/haasn/gentoo-conf/blob/master/home/nand/.bashrc
   if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
