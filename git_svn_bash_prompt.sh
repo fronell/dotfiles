@@ -123,21 +123,25 @@ function set_svn_branch {
 #  BRANCH="(${branch}) "
 #}
  
-# Return the prompt symbol to use, colorized based on the return value of the
-# previous command.
-function set_prompt_symbol () {
+# Shows the return status of the last command ran
+# A green 0 if good, otherwise the return code in red
+# It can also be used to set the $ as green or red to indicate the return status
+# if we want a shorter prompt
+# Reference: http://stackoverflow.com/questions/24562629/setting-a-variable-within-a-bash-ps1
+function format_last_status () {
   if test $1 -eq 0 ; then
-      PROMPT_SYMBOL="\$"
+    LAST_STATUS="${VIOLET}|${GREEN}$1${VIOLET}|${COLOR_NONE}"
+    # PROMPT_SYMBOL="\$"
   else
-      PROMPT_SYMBOL="${RED}\$${COLOR_NONE}"
+    LAST_STATUS="${VIOLET}|${RED}$1${VIOLET}|${COLOR_NONE}"
+    # PROMPT_SYMBOL="${RED}\$${COLOR_NONE}"
   fi
 }
- 
+
 # Set the full bash prompt.
 function set_bash_prompt () {
-  # Set the PROMPT_SYMBOL variable. We do this first so we don't lose the 
-  # return value of the last command.
-  set_prompt_symbol $?
+  # We do this first so we don't lose the return value of the last command.
+  format_last_status $?
  
   # Set the BRANCH variable.
   if is_git_repository ; then
@@ -148,9 +152,14 @@ function set_bash_prompt () {
     BRANCH=''
   fi
   
+  # Set the terminal window titles to the PWD
+  # Reference: http://superuser.com/questions/84710/window-title-in-bash
+  TERMINAL_TITLE='\[\e]2;$PWD\a\]'
+
   # Set the bash prompt variable.
-  #PS1="\u@\h \w ${BRANCH}${PROMPT_SYMBOL} "
-  PS1="$PURPLE\w${BRANCH}$VIOLET[\j]$LIGHT_BLUE\$$COLOR_NONE "
+  # \w is needed to show the PWD in the prompt itself
+  #PS1="$PURPLE\w\[\e]2;$PWD\a\]${BRANCH}$VIOLET[\j]$LIGHT_BLUE\$$COLOR_NONE "
+  PS1="$PURPLE\w${TERMINAL_TITLE}${BRANCH}$VIOLET[\j]${LAST_STATUS}$LIGHT_BLUE\$$COLOR_NONE "
 }
  
 # Tell bash to execute this function just before displaying its prompt.
