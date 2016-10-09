@@ -24,19 +24,24 @@
  
  
 # The various escape codes that we can use to color our prompt.
-        RED="\[\033[0;31m\]"
-  LIGHT_RED="\[\033[1;31m\]"
-      GREEN="\[\033[0;32m\]"
-LIGHT_GREEN="\[\033[1;32m\]"
-       BLUE="\[\033[0;34m\]"
- LIGHT_BLUE="\[\033[0;36m\]"
-     PURPLE="\[\033[1;34m\]"
-     YELLOW="\[\033[0;33m\]"
-      WHITE="\[\033[1;37m\]"
-     VIOLET="\[\033[0;35m\]"
- LIGHT_GRAY="\[\033[0;37m\]"
- COLOR_NONE="\[\e[0m\]"
- 
+       BLACK="\[\033[0;30m\]"
+ LIGHT_BLACK="\[\033[1;30m\]"
+        BLUE="\[\033[0;34m\]"
+  LIGHT_BLUE="\[\033[0;36m\]"
+        CYAN="\[\033[1;36m\]"
+  LIGHT_GRAY="\[\033[0;37m\]"
+       GREEN="\[\033[0;32m\]"
+ LIGHT_GREEN="\[\033[1;32m\]"
+      PURPLE="\[\033[1;34m\]"
+LIGHT_PURPLE="\[\033[1;34m\]"
+         RED="\[\033[0;31m\]"
+   LIGHT_RED="\[\033[1;31m\]"
+      VIOLET="\[\033[0;35m\]"
+      YELLOW="\[\033[0;33m\]"
+LIGHT_YELLOW="\[\033[0;33m\]"
+       WHITE="\[\033[1;37m\]"
+  COLOR_NONE="\[\e[0m\]"
+
 # Detect whether the current directory is a git repository.
 function is_git_repository {
   git branch > /dev/null 2>&1
@@ -130,10 +135,10 @@ function set_svn_branch {
 # Reference: http://stackoverflow.com/questions/24562629/setting-a-variable-within-a-bash-ps1
 function format_last_status () {
   if test $1 -eq 0 ; then
-    LAST_STATUS="${VIOLET}|${GREEN}$1${VIOLET}|${COLOR_NONE}"
+    LAST_STATUS="${VIOLET}[${GREEN}$1${VIOLET}]"
     # PROMPT_SYMBOL="\$"
   else
-    LAST_STATUS="${VIOLET}|${RED}$1${VIOLET}|${COLOR_NONE}"
+    LAST_STATUS="${VIOLET}[${RED}$1${VIOLET}]"
     # PROMPT_SYMBOL="${RED}\$${COLOR_NONE}"
   fi
 }
@@ -159,7 +164,7 @@ function set_bash_prompt () {
   # Set the bash prompt variable.
   # \w is needed to show the PWD in the prompt itself
   #PS1="$PURPLE\w\[\e]2;$PWD\a\]${BRANCH}$VIOLET[\j]$LIGHT_BLUE\$$COLOR_NONE "
-  PS1="$PURPLE\w${TERMINAL_TITLE}${BRANCH}$VIOLET[\j]${LAST_STATUS}$LIGHT_BLUE\$$COLOR_NONE "
+  PS1="$PURPLE\w${TERMINAL_TITLE}${BRANCH}$VIOLET|\j|${LAST_STATUS}$LIGHT_BLUE\$$COLOR_NONE "
 }
  
 # Tell bash to execute this function just before displaying its prompt.
