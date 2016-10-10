@@ -88,7 +88,7 @@ function set_git_branch {
   branch="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
 
   # Set the final branch string.
-  BRANCH="${state}[Git(${remote}${branch})]${COLOR_NONE}"
+  BRANCH="${state}[${remote}${branch}]${COLOR_NONE}"
 }
 
 # Minimal function until I figure out what I want
@@ -106,7 +106,7 @@ function set_svn_branch {
   fi
 
   # Set the final branch string.
-  BRANCH="${state}[SVN]${COLOR_NONE}"
+  BRANCH="${state}[SVN]"
 }
  
 # Determine the branch information for this subversion repository. No support
