@@ -66,4 +66,4 @@ fi
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # Sets the prompt including git or svn info
-. ~/dotfiles/git_svn_bash_prompt
+. ~/dotfiles/git_svn_bash_prompt.sh
