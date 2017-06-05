@@ -1,3 +1,4 @@
-"%ConEmuDrive%\Program Files\Git\git-cmd.exe" --no-cd --command=usr/bin/bash.exe -l -i
-cmd.exe /k "%UserProfile%\dotfiles\CmdInit.cmd"
-cmd.exe /k "%UserProfile%\dotfiles\CmdInit.cmd" -new_console:a
+"c:\Program Files\Git\git-cmd.exe" --no-cd --command=usr/bin/bash.exe -l -i -new_console:d:%USERPROFILE%
+cmd /k "%ConEmuDir%\..\init.bat"  -new_console:d:%USERPROFILE%
+*cmd /k "%ConEmuDir%\..\init.bat"  -new_console:d:%USERPROFILE%
+*PowerShell -ExecutionPolicy Bypass -NoLogo -NoProfile -NoExit -Command "Invoke-Expression '. ''%ConEmuDir%\..\profile.ps1'''" -new_console:d:"%USERPROFILE%"
