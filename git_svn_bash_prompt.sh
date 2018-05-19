@@ -30,6 +30,7 @@
   LIGHT_BLUE="\[\033[0;36m\]"
         CYAN="\[\033[1;36m\]"
   LIGHT_GRAY="\[\033[0;37m\]"
+        GRAY="\[\033[1;30m\]"
        GREEN="\[\033[0;32m\]"
  LIGHT_GREEN="\[\033[1;32m\]"
       PURPLE="\[\033[1;34m\]"
@@ -147,10 +148,15 @@ function format_last_status () {
   fi
 }
 
+function format_bg_jobs () {
+    BG_JOBS="$VIOLET[${GRAY}\j${VIOLET}]"
+}
+
 # Set the full bash prompt.
 function set_bash_prompt () {
   # We do this first so we don't lose the return value of the last command.
   format_last_status $?
+  format_bg_jobs
 
   # Set the BRANCH variable.
   if is_git_repository ; then
@@ -168,7 +174,7 @@ function set_bash_prompt () {
   # Set the bash prompt variable.
   # \w is needed to show the PWD in the prompt itself
   #PS1="$PURPLE\w\[\e]2;$PWD\a\]${BRANCH}$VIOLET[\j]$LIGHT_BLUE\$$COLOR_NONE "
-  PS1="$PURPLE\w${TERMINAL_TITLE}${BRANCH}$VIOLET|\j|${LAST_STATUS}$LIGHT_BLUE\$$COLOR_NONE "
+  PS1="$PURPLE\w${TERMINAL_TITLE}${BRANCH}${BG_JOBS}${LAST_STATUS}$LIGHT_BLUE\$$COLOR_NONE "
 }
 
 # Tell bash to execute this function just before displaying its prompt.
