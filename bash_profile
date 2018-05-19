@@ -1,9 +1,6 @@
 # Get all 256 colors in the terminal
 export TERM=xterm-256color
 
-# Java
-export JAVA_HOME=/usr/local/bin/java
-
 # Sudo prompt
 export SUDO_PS1="[ROOT! \W]# "
 
@@ -44,7 +41,6 @@ unamestr=`uname`
 if [[ "$unamestr" == 'Darwin' ]]; then
   export CLICOLOR=1
   export LSCOLORS="ExGxFxDxCxDxDxhbhdacEc"
-
   alias diff='colordiff'
   alias grep='grep --color=auto'
 elif [[ "$unamestr" == 'Linux' ]]; then
@@ -56,7 +52,6 @@ elif [[ "$unamestr" == 'Linux' ]]; then
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
     alias diff='colordiff'
-  
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
