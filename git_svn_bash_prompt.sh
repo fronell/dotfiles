@@ -149,7 +149,7 @@ function format_last_status () {
 }
 
 function format_bg_jobs () {
-    BG_JOBS="$VIOLET[${GRAY}\j${VIOLET}]"
+    BG_JOBS="$VIOLET[${LIGHT_BLUE}\j${VIOLET}]"
 }
 
 # Set the full bash prompt.
@@ -174,7 +174,7 @@ function set_bash_prompt () {
   # Set the bash prompt variable.
   # \w is needed to show the PWD in the prompt itself
   #PS1="$PURPLE\w\[\e]2;$PWD\a\]${BRANCH}$VIOLET[\j]$LIGHT_BLUE\$$COLOR_NONE "
-  PS1="$PURPLE\w${TERMINAL_TITLE}${BRANCH}${BG_JOBS}${LAST_STATUS}$LIGHT_BLUE\$$COLOR_NONE "
+  PS1="$PURPLE\w${TERMINAL_TITLE}${BRANCH}${BG_JOBS}${LAST_STATUS}$GRAY\$$COLOR_NONE "
 }
 
 # Tell bash to execute this function just before displaying its prompt.
