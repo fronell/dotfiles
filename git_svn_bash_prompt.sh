@@ -93,7 +93,7 @@ function set_git_branch {
   branch="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
 
   # Set the final branch string.
-  BRANCH="${state}[${remote}${branch}]${COLOR_NONE}"
+  BRANCH="${VIOLET}[${state}${remote}${branch}${VIOLET}]${COLOR_NONE}"
 }
 
 # Minimal function until I figure out what I want
