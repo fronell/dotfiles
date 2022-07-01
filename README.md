@@ -1,10 +1,9 @@
-# Installation
-## Linux
+# Linux Setup
 
 The steps below delete the existing configuration so be careful!
 
     cd ~
-    git clone git@github.com:fronell/dotfiles.git
+    git clone https://github.com/fronell/dotfiles.git
     rm -f ~/.bashrc
     rm -f ~/.bash_profile
     rm -f ~/.dircolors
@@ -14,7 +13,7 @@ The steps below delete the existing configuration so be careful!
     ln -s ~/dotfiles/bash_profile .bashrc
     ln -s ~/dotfiles/dircolors .dircolors
 
-## Windows
+# Windows Setup
 
 The steps below delete the existing configuration so be careful!
 
@@ -23,6 +22,6 @@ From a console with Admin rights (Admin is needed to create symlinks):
     cd %USERPROFILE%
     del .bash_profile
     del .dircolors
-    git clone git@github.com:fronell/dotfiles.git
+    git clone https://github.com/fronell/dotfiles.git
     mklink .bash_profile dotfiles\bash_profile_minigw
     mklink .dircolors dotfiles\dircolors
